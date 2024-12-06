@@ -4,6 +4,7 @@ import folium
 from streamlit_folium import st_folium
 import numpy as np
 
+@st.cache_data
 def filter_df_by_hour(df, hour):
     df['hour_filter'] = pd.to_datetime(df['est_time'], format='%H:%M:%S', errors='coerce').dt.hour
     return df[df['hour_filter'] == hour]
