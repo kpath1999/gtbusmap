@@ -61,8 +61,8 @@ def create_route_layer(df, route_name, hour=None):
 @st.cache_data
 def load_data():
     return {
-        "Blue Route": pd.read_csv("real_data/blue_traffic.csv"),
-        "Red Route": pd.read_csv("real_data/red_traffic.csv"),
+        "Blue Route": pd.read_csv("real_data/blue_traffic_mini.csv"),
+        "Red Route": pd.read_csv("real_data/red_traffic_mini.csv"),
         "Green Route": pd.read_csv("real_data/green_traffic_merged.csv"),
         "Gold Route": pd.read_csv("real_data/gold_traffic_merged.csv")
     }
@@ -74,7 +74,7 @@ st.title("Georgia Tech Traffic Congestion")
 # Sidebar for controls
 st.sidebar.header("Map Controls")
 selected_route = st.sidebar.radio("Select Route", list(data.keys()))
-selected_hour = st.sidebar.selectbox("Filter by Hour", ["All Hours"] + list(range(7, 20)))
+selected_hour = st.sidebar.selectbox("Filter by Hour", ["All Hours"] + list(range(0, 24)))
 
 # Initialize the map
 center_lat = np.mean([df['latitude'].mean() for df in data.values()])
